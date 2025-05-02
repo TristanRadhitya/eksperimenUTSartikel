@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Demo WebSocket</h2>
+  <div id="output"></div>
+  <script>
+    const socket = new WebSocket('ws://localhost:8080');
+    const output = document.getElementById('output');
+
+    socket.onmessage = (event) => {
+      output.innerHTML += `${event.data}<br>`;
+    };
+  </script>
+</body>
+</html>
