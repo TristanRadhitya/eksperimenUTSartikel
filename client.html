@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>WebSocket Demo</h1>
+  <input id="messageInput" placeholder="Ketik pesan..." />
+  <button onclick="sendMessage()">Kirim</button>
+  <div id="output"></div>
+
+  <script>
+    const socket = new WebSocket('ws://localhost:8080');
+    const output = document.getElementById('output');
+
+    socket.onopen = () => {
+      output.innerHTML += 'Terhubung ke server!<br>';
+    };
+
+    socket.onmessage = (event) => {
+      output.innerHTML += `Pesan dari server: ${event.data}<br>`;
+    };
+
+    function sendMessage() {
+      const message = document.getElementById('messageInput').value;
+      socket.send(message);
+      output.innerHTML += `Anda mengirim: ${message}<br>`;
+    }
+  </script>
+</body>
+</html>
